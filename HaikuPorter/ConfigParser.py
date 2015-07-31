@@ -197,6 +197,9 @@ class ConfigParser(object):
 					elif value.startswith('!'):
 						status = Status.BROKEN
 						architecture = value[1:]
+					elif value.startswith('~'):
+						status = Status.CAN_HOST
+						architecture = value[1:]
 					else:
 						status = Status.STABLE
 						architecture = value

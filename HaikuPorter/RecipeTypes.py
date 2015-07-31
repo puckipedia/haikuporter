@@ -100,6 +100,7 @@ class Status(str):
 	STABLE = 'stable'
 	UNSUPPORTED = 'unsupported'
 	UNTESTED = 'untested'
+	CAN_HOST = 'can host'
 
 
 # -- Phase --------------------------------------------------------------------

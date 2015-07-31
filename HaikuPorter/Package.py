@@ -138,7 +138,7 @@ class Package(object):
 			secondaryArchitecture):
 		# check the primary architecture
 		primaryStatus = self.getStatusOnArchitecture(architecture)
-		if not primaryStatus in [Status.STABLE, Status.UNTESTED]:
+		if not primaryStatus in [Status.STABLE, Status.UNTESTED, Status.CAN_HOST]:
 			return primaryStatus
 
 		# check the secondary architecture
@@ -148,8 +148,11 @@ class Package(object):
 			if secondaryArchitecture in secondaryArchitectures:
 				secondaryStatus = secondaryArchitectures[secondaryArchitecture]
 
-			if secondaryStatus != Status.STABLE:
+			if secondaryStatus != Status.STABLE or primaryStatus == Status.CAN_HOST:
 				return secondaryStatus
+		
+		if primaryStatus == Status.CAN_HOST:
+			return Status.UNSUPPORTED
 
 		return primaryStatus
 
